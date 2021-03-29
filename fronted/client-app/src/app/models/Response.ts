@@ -1,4 +1,5 @@
 import { Client } from "./Client";
+import { ResponseError } from "./ResponseError";
 
 export interface Response {
   tipoRespuesta: string;
@@ -6,9 +7,3 @@ export interface Response {
   response?: Client;
 }
 
-interface ResponseError {
-  codeError: number;
-  detailError: string;
-  typeError?: string;
-  systemError?: string;
-}

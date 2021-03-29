@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 import { AppComponent } from './app.component';
 import { FormClientComponent } from './components/form-client/form-client.component';
@@ -29,6 +30,7 @@ const rutas: Routes = [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxJsonViewerModule,
     RouterModule.forRoot(
       rutas
     )

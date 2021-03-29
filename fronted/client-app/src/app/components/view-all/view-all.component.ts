@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { Node } from "../../models/Node";
 
 @Component({
   selector: 'app-view-all',
@@ -8,21 +9,17 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ViewAllComponent implements OnInit {
 
+  responseService: Node;
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
 
     this.apiService.getAllInformation().subscribe(data => {
-
-      console.log(data.response);
       if (data.tipoRespuesta === 'OK') {
-        
-      } else {
-        
+        this.responseService = data.response;
       }
-
     });
 
   }
-
 }

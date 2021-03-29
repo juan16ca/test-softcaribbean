@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Client} from "../models/Client";
 import {Response} from "../models/Response";
+import { ResponseNode } from '../models/ResponseNode';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class ApiService {
     return this.http.get<Response>(this.baseUrl + 'getClient/'+identificationNumber);
   }
 
-  getAllInformation(): Observable<Response> {
-    return this.http.get<Response>(this.baseUrl + 'getAllClient');
+  getAllInformation(): Observable<ResponseNode> {
+    return this.http.get<ResponseNode>(this.baseUrl + 'getAllClient');
   }
 
 
