@@ -8,5 +8,6 @@ public interface IClientService {
     public ResponseService createUser(Client client);
     public ResponseService getInfoClientFromDatabase();
     public ResponseService getInfoClientFromTree(int identificationNumber);
+    public ResponseService getAllInfoFromTree();
     
 }

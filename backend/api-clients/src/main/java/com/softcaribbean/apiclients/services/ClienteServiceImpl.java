@@ -31,9 +31,7 @@ public class ClienteServiceImpl implements IClientService {
     @Override
     public ResponseService createUser(Client client) {
 
-        System.out.println("entro a create: " + client.getSerial());
-
-        if (node == null) {
+       if (node == null) {
             node = new Node(client);
         } else {
             node.add(client);
@@ -41,6 +39,7 @@ public class ClienteServiceImpl implements IClientService {
 
         responseService.setResponse(clienteRepository.save(client));
         responseService.setTipoRespuesta(EResponseType.OK.toString());
+        responseService.setResponseError(null);
         return responseService;
     }
 
@@ -49,7 +48,7 @@ public class ClienteServiceImpl implements IClientService {
 
         List<Client> listClient = (List<Client>) clienteRepository.findAll();
 
-        if (listClient.size() > 0) {
+        if (!listClient.isEmpty()) {
             responseService.setTipoRespuesta(EResponseType.OK.toString());
             responseService.setResponse(listClient);
 
@@ -74,9 +73,24 @@ public class ClienteServiceImpl implements IClientService {
             } else {
                 responseService.setTipoRespuesta(EResponseType.ER.toString());
                 responseError.setDetailError("No found information in tree");
+                responseService.setResponse(null);
                 responseService.setResponseError(responseError);
             }
 
+        } else {
+            responseService.setTipoRespuesta(EResponseType.ER.toString());
+            responseError.setDetailError("No found information by id in tree");
+            responseService.setResponseError(responseError);
+        }
+
+        return responseService;
+    }
+
+    @Override
+    public ResponseService getAllInfoFromTree() {
+        if (node != null) {
+            responseService.setTipoRespuesta(EResponseType.OK.toString());
+            responseService.setResponse(node);
         } else {
             responseService.setTipoRespuesta(EResponseType.ER.toString());
             responseError.setDetailError("No found information in tree");

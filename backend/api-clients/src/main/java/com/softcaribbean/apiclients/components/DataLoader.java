@@ -23,16 +23,10 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("ENTRO AL LOADER 1");
-
         responseService = iClientService.getInfoClientFromDatabase();
-
         if (responseService.getTipoRespuesta().equals(EResponseType.OK.toString())) {
-
-            System.out.println("OK Datos");
-
+            
             List<Client> listClient = (List<Client>) responseService.getResponse();
-
             listClient.stream().forEach((client) -> iClientService.createUser(client));
 
         }

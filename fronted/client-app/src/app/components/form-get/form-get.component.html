@@ -1,0 +1,54 @@
+<h1 class="text-primary">CONSULTA DE CLIENTE</h1>
+<br>
+<form [formGroup]="searchForm" (ngSubmit)="search($event)">   
+<div class="row">
+   <div class="col-4">
+      <label for="identificationNumber" class="form-label font-weight-bold">Número de identificacion</label>
+      <input type="text" class="form-control" id="identificationNumber" formControlName="identificationNumber">  
+      <br>
+   </div>
+</div>
+<div class="row">
+   <div class="col-4">
+      <button type="submit" class="btn btn-primary">Buscar</button>  
+   </div>
+</div>
+<br>
+
+<div *ngIf=searchFound>
+   <div class="row">
+      <table class="table table-bordered border-primary">
+         <caption>Listado de clientes</caption>
+         <thead class="table-primary">
+            <tr>
+               <th scope="col">#</th>
+               <th *ngFor="let field of listField">{{field.label}}</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr class="table-secondary">
+               <th scope="row">1</th>
+               <td>{{information.identificationNumber}}</td>
+               <td>{{information.names}}</td>
+               <td>{{information.lastName}}</td>
+               <td>{{information.email}}</td>
+               <td>{{information.telephone}}</td>
+               <td>{{information.telephoneAditional}}</td>
+               <td>{{information.phone}}</td>
+               <td>{{information.birthDay}}</td>
+               <td>{{information.gender}}</td>
+               <td>{{information.companyName}}</td>
+               <td>{{information.hobbies}}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+
+<div *ngIf="!searchFound">
+         <div class="alert alert-warning" role="alert">
+            Cliente no encontrado o no se ha ingresado un dato valido
+         </div>
+      </div>
+<br>
+</form>

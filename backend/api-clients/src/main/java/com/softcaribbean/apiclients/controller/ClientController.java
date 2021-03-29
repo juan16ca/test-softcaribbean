@@ -28,10 +28,14 @@ public class ClientController {
     }
 
     @GetMapping("/getClient/{identificationNumber}")
-    public ResponseEntity<ResponseService> getByIdentificationNumber(@PathVariable("identificationNumber") int identificationNumber) {
-        iClientService.getInfoClientFromTree(identificationNumber);
-
+    public ResponseEntity<ResponseService> getByIdentificationNumber(
+            @PathVariable("identificationNumber") int identificationNumber) {
         return ResponseEntity.ok(iClientService.getInfoClientFromTree(identificationNumber));
+    }
+
+    @GetMapping("/getAllClient")
+    public ResponseEntity<ResponseService> getAllInformation() {
+        return ResponseEntity.ok(iClientService.getAllInfoFromTree());
     }
 
 }
